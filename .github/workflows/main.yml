@@ -1,0 +1,33 @@
+name: .NET Core CI
+
+on: [push]
+
+env: 
+  AZURE_WEBAPP_NAME: azure-web-app-demo
+  AZURE_WEBAPP_PACKAGE_PATH: ''
+  DOTNET_VERSION: '7.0'
+  
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+      - uses: actions/checkout@master
+      
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+         dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+      - name: dotnet build and publish
+        run: |
+          dotnet restore
+          dotnet build --configuration Release
+          dotnet publish -c Release --property:PublishDir='${{ env.DOTNET_ROOT }}/azure-web-app-demo'
+  
+      - name: 'Run Azure WebApp deploy action using publish profile credentials'
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: .
