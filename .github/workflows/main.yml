@@ -23,7 +23,7 @@ jobs:
         run: |
           dotnet restore
           dotnet build --configuration Release
-          dotnet publish -c Release --property:PublishDir='${{ env.DOTNET_ROOT }}/azure-web-app-demo'
+          dotnet publish -c Release --property:PublishDir='C:\Users\E. Martinbiancho\source\repos\azure-web-app'
   
       - name: 'Run Azure WebApp deploy action using publish profile credentials'
         uses: azure/webapps-deploy@v2
