@@ -2,18 +2,19 @@
 @using azure_web_app.Models;
 @model azure_web_app.Pages.PeopleModel
 @{
-	<h1>People</h1>
+	<h1 class="mb-4">People</h1>
+	<div class="d-flex justify-content-center gap-5 mb-3">
+		<form method="post" class="h-25 d-flex justify-content-center gap-5 mb-3">
+			<input type="number" name="id" placeholder="Id">
+			<input type="text" name="name" placeholder="Name">
+			<input type="number" name="age" placeholder="Age">
+			<button type="submit" class="btn-primary">Add</button>
+		</form>
 
-	<form method="post">
-		<input type="number" name="id">
-		<input type="text" name="name">
-		<input type="number" name="age">
-		<button type="submit">Add</button>
-	</form>
-
-	<form method="post">
-		<button asp-page-handler="ResetList">Reset</button>
-	</form>
+		<form method="post">
+			<button asp-page-handler="ResetList" class="btn-secondary">Reset</button>
+		</form>
+	</div>
 
 
 	<table class="table">
