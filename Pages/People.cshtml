@@ -1,12 +1,41 @@
 ﻿@page
+@using azure_web_app.Models;
 @model azure_web_app.Pages.PeopleModel
 @{
 	<h1>People</h1>
 
 	<form method="post">
-	<input type="number" name="id">
-	<input type="text" name="name">
-	<input type="number" name="age">
-	<button type="submit">Add</button>
+		<input type="number" name="id">
+		<input type="text" name="name">
+		<input type="number" name="age">
+		<button type="submit">Add</button>
 	</form>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Age</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			@foreach (Person person in Model.People)
+			{
+				<tr>
+					<td>
+						@person.Id
+					</td>
+					<td>
+						@person.Name
+					</td>
+					<td>
+						@person.Age
+					</td>
+				</tr>
+			}
+
+		</tbody>
+	</table>
 }

@@ -8,6 +8,8 @@ namespace azure_web_app.Pages
     {
         private readonly MyDbContext _context;
 
+        public List<Person> People { get; set; } = new List<Person>();
+
         //BindProperty will bind the values provided in the input fields to
         //the Person properties
         //name="id" will be the id, name="name" will be the name and so on
@@ -21,7 +23,7 @@ namespace azure_web_app.Pages
 
         public void OnGet()
         {
-            
+            People = _context.People.ToList();  
         }
 
         public IActionResult OnPost()
