@@ -40,7 +40,6 @@ namespace azure_web_app.Pages
 
 		public IActionResult OnPostResetList()
 		{
-			Console.WriteLine("button clicked");
 
 			foreach (var person in _context.People)
 			{
@@ -50,5 +49,6 @@ namespace azure_web_app.Pages
 			_context.SaveChanges();
 			return RedirectToPage();
 		}
+
 	}
 }
