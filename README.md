@@ -1,4 +1,3 @@
-
 # Azure Web App
 A simple application used for learning the fundamentals of CI/CD.
 Check it out [here](https://azure-web-app-demo.azurewebsites.net/).
@@ -68,12 +67,14 @@ Check out the pipeline flowchart to get a better grasp of the pipeline above:
 ```mermaid
 graph LR
 	classDef default fill:#E0FFFF, color:black, stroke:#555;
-  classDef code fill:#e0ffe0, stroke: black;
+	classDef code fill:#e0ffe0, stroke: black;
 	classDef git fill:#ffc, stroke:black;
 	classDef azure fill:#ccddff, stroke:black;
 	classDef publish fill:white, stroke:black;
 	
-	A[Changes on the code]:::code --> B[git push] 
+
+	A[Changes on the code]:::code --> B[git push]
+
 	B:::git --> C[Build]
 	subgraph .yaml actions
 	C:::azure --> D[Deploy to Azure]:::azure 
@@ -81,4 +82,7 @@ graph LR
 	D --> E[App is published]:::publish
 ```
 ## Conclusion
+
 Altough this is a very basic website, the experience of developing provided a great, clear and straightforward example of the Continuous Integration/Continuous deployment principles in action. By creating such an application, it becomes as clear as day why CI/CD is broadly used in software development, since its capabilities of enabling rapid, reliable and repeatable processes for merging code changes, testing and deploying applications are unmatched.
+
+
