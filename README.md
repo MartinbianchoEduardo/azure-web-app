@@ -83,6 +83,6 @@ graph LR
 ```
 ## Conclusion
 
-Altough this is a very basic website, the experience of developing provided a great, clear and straightforward example of the Continuous Integration/Continuous deployment principles in action. By creating such an application, it becomes as clear as day why CI/CD is broadly used in software development, since its capabilities of enabling rapid, reliable and repeatable processes for merging code changes, testing and deploying applications are unmatched.
+Altough this is a very basic website, the experience of developing provided a great, clear and straightforward example of the Continuous Integration/Continuous deployment principles in action. While developing this application, it becomes as clear as day why CI/CD is broadly used in software development, since its capabilities of enabling rapid, reliable and repeatable processes for merging code changes, testing and deploying applications are unmatched.
 
 
