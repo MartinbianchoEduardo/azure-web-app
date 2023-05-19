@@ -67,12 +67,13 @@ Finally, we can deploy the application using the `azure/webapps-deploy@v2` actio
 Check out the pipeline flowchart to get a better grasp of the pipeline above:
 ```mermaid
 graph LR
-	classDef default fill:#e0ffe0, color:#333, stroke:#555;
+	classDef default fill:#E0FFFF, color:black, stroke:#555;
+	classDef code fill:#e0ffe0, stroke: black;
 	classDef git fill:#ffc, stroke:black;
 	classDef azure fill:#ccddff, stroke:black;
 	classDef publish fill:white, stroke:black;
 	
-	A[Changes on the code] --> B[git push] 
+	A[Changes on the code]:::code --> B[git push]
 	B:::git --> C[Build]
 	subgraph .yaml actions
 	C:::azure --> D[Deploy to Azure]:::azure 
