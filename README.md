@@ -31,13 +31,13 @@ When running the application, you will see a simple interface. Here you can:
 
 ### People Page
 In the People page, you can:
--   **Add a Person**: Input the ID, Name, and Age in the corresponding fields and press the "Add" button. The added person will appear in the list below.
--   **Reset the List**: To clear the list, simply press the "Reset" button.
+-   **Add a Person**: Input the ID, Name, and Age in the corresponding fields and use the "Add" button. The added person will appear in the list below.
+-   **Reset the List**: To clear the list, simply use the "Reset" button.
 
 
 ## CI/CD Pipeline with GitHub Actions
 The application includes a `.github/workflows/main.yml` file, which contains the configuration for the CI/CD pipeline. Upon every push to the [GitHub repository](https://github.com/MartinbianchoEduardo/azure-web-app), the following steps will be executed automatically:
-1. **Build**: An artifact of the application is built.
+1. **Build**: A build of the application is made.
 2. **Deploy**: The built application is deployed to Azure.
 
 ### Setting up the Deploy
@@ -48,22 +48,24 @@ In order to set up the Deploy and Publish to Azure process in the `.yml` file, a
 We'll use this actions to properly store the artifact created in the build process. 
 
 ### Build and Deploy jobs
-The `.yml` file contains two defined jobs: **build** and **deploy**. Each job has their own responsabilities and executes a pre-determined set of actions in order to build and deploy the application to Azure.
+The `.yml` file contains two defined jobs: **build** and **deploy**. Each job has their own steps that execute a pre-determined set of actions in order to build and deploy the application to Azure.
 ### 1. Build
 The first action taken in the build job is to checkout from our repository so the workflow can access it, using `actions/checkout@v3`. Learn more about the `checkout@v3` action [here](https://github.com/actions/checkout). After the checkout is done, .NET Core is set by using the [`actions/setup-dotnet@v1`](https://github.com/actions/setup-dotnet) action. 
 >**Note**: An [ASP.NET](https://learn.microsoft.com/en-us/aspnet/core/?view=aspnetcore-7.0) Core project usually includes a set up for the NuGet package manager in the `.yml` file. However, since this application does not contain any packages or external dependencies, this is not needed. If you want to build an [ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/?view=aspnetcore-7.0) application that needs NuGet, check out its [documentation](https://learn.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=applevel). 
 
-Next, the `dotnet build` and `dotnet publish` actions are executed. Here we build the application and publish it the resulting set of files to a directory. These files are now ready for deployment to a hosting system for execution.
+Next, the `dotnet build` and `dotnet publish` actions are executed. Here we build the application and publish the resulting set of files to a directory. These files are now ready for deployment to a hosting system for execution.
 
 Lastly, the artifact is uploaded for the deployment job, using the `actions/upload-artifact@v3` action. This uploads the artifacts from the workflow allowing data to be shared with other jobs (we'll use this artifact in the deploy job).
 
 ### 2. Deploy
 In the Deploy job, we first need to download the artifact from build job. This is done using the `actions/download-artifact@v2` and gives us access to manage the build artifact created in the previous job. 
 
-Finally, we can deploy the application using the `azure/webapps-deploy@v2` action. This will deploy the downloaded artifact to the Azure Web App. Here the web app name must be defined as well as the path to the GitHub publish profile.
+Finally, we can deploy the application using the [`azure/webapps-deploy@v2`](https://github.com/Azure/webapps-deploy) action. This will deploy the downloaded artifact to the Azure Web App. Here the web app name must be defined as well as the path to your GitHub secret publish profile. This action will publish the application to your Microsoft Azure hosted web page.
+
+Check out this app's `.yml` file in full [here](https://github.com/MartinbianchoEduardo/azure-web-app/blob/master/.github/workflows/main.yml).
 
 ### Pipeline Flowchart
-Check out the pipeline flowchart to get a better grasp of the pipeline above:
+Get a better grasp of the pipeline above:
 ```mermaid
 graph LR
 	classDef default fill:#E0FFFF, color:black, stroke:#555;
@@ -83,6 +85,4 @@ graph LR
 ```
 ## Conclusion
 
-Altough this is a very basic website, the experience of developing provided a great, clear and straightforward example of the Continuous Integration/Continuous deployment principles in action. While developing this application, it becomes as clear as day why CI/CD is broadly used in software development, since its capabilities of enabling rapid, reliable and repeatable processes for merging code changes, testing and deploying applications are unmatched.
-
-
+Altough this is a very basic website, the experience of developing it provided a great, clear and straightforward example of the Continuous Integration/Continuous Deployment principles in action. While developing this application, it became as clear as day why CI/CD is broadly used in software development, since its capabilities of enabling rapid, reliable and repeatable processes for merging code changes, testing and deploying applications are unmatched.
