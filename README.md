@@ -1,5 +1,5 @@
 # Azure Web App
-A simple application used for learning the fundamentals of CI/CD.
+A simple application developed for learning the fundamentals of CI/CD.
 Check it out [here](https://azure-web-app-demo.azurewebsites.net/).
 
 ## Summary
